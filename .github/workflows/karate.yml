@@ -28,7 +28,7 @@ jobs:
 
     - name: Run Karate Tests
       run: |
-        java -jar karate.jar -t target src/test/features/sample.feature
+        java -jar karate.jar src/test/features/sample.feature
 
     # Optional step: Check if reports are generated
     - name: List files in target
