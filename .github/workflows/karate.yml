@@ -16,22 +16,28 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-        distribution: 'temurin'
-        java-version: '11'
+    - name: Download Karate Standalone JAR
+      run: |
+        curl -L -o karate.jar https://search.maven.org/remotecontent?filepath=com/intuit/karate/karate-core/1.4.1/karate-core-1.4.1.jar
 
-    - name: Build with Maven and Run Karate Tests
-      run: mvn test
+    - name: Run Karate Tests
+      run: |
+        java -jar karate.jar src/test/features/sample.feature
 
-    # Debugging step to list contents of target directory
+    # Optional step: Check if reports are generated
     - name: List files in target
-      run: ls -R .
+      run: ls -R target
 
-    # Upload Karate Reports
+    # Upload Karate Reports (assumes reports are generated in target/karate-reports)
     - name: Upload Karate Reports
       uses: actions/upload-artifact@v3
       with:
         name: karate-reports
-        path: target/surefire-reports/
+        path: target/karate-reports/
+
+    # Optional: Deploy reports to GitHub Pages
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: target/karate-reports/
