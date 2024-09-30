@@ -16,21 +16,20 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up JDK 17
+    - name: Set up Java
       uses: actions/setup-java@v3
       with:
-        distribution: 'temurin'
-        java-version: '17'
+        java-version: '17'  # Only JRE needed, JDK can be omitted if no compiling is needed.
 
     - name: Download Karate Standalone JAR
       run: |
         curl -L -o karate.jar https://github.com/karatelabs/karate/releases/download/v1.5.0/karate-1.5.0.jar
 
+    # Copy index.html from the site folder to the publish directory before running tests
     - name: Run Karate Tests
       run: |
         java -jar karate.jar src/test/features/sample.feature
 
-    # Copy index.html from the site folder to the publish directory
     - name: Prepare GitHub Pages
       run: |
         cp site/index.html target/karate-reports/
