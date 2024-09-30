@@ -14,10 +14,10 @@
     </properties>
 
     <dependencies>
-        <!-- Karate Dependencies -->
+        <!-- Use karate-junit5 version 1.4.1 -->
         <dependency>
             <groupId>com.intuit.karate</groupId>
-            <artifactId>karate-apache</artifactId>
+            <artifactId>karate-junit5</artifactId>
             <version>1.4.1</version>
             <scope>test</scope>
         </dependency>
