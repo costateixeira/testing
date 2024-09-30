@@ -34,7 +34,7 @@ jobs:
       run: mvn exec:java -Dexec.mainClass="com.intuit.karate.Main" -Dexec.args="target/karate-reports" 
 
     - name: Upload Karate Reports
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: karate-reports
         path: target/karate-reports/
