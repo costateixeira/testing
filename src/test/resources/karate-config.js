@@ -1,6 +1,8 @@
 function() {
     var config = {};
 
+    // Define FHIR helper functions globally
+    karate.log('Initializing FHIR helper functions');
 
     var projectRoot = java.nio.file.Paths.get('.').toAbsolutePath().normalize().toString();
 
@@ -69,9 +71,57 @@ function() {
 
 
 
+    config.createFHIRResourcesFromTable = function(table) {
+        var resources = [];
+        for (var i = 0; i < table.length; i++) {
+            var row = table[i];
+            var resource = config.createFHIRResource(row.resourceType, row);
+            resources.push(resource);
+        }
+        return resources;
+    };
 
-
-
+    config.createFHIRResource = function(resourceType, properties) {
+        var resource = { resourceType: resourceType };
+    
+        // Loop through the properties to set values in the FHIR resource
+        for (var key in properties) {
+            if (key !== 'resourceType') {
+                var keys = key.split('.');
+                var obj = resource;
+    
+                // Nested loop to handle keys with dot notation
+                for (var j = 0; j < keys.length - 1; j++) {
+                    var subKey = keys[j];
+    
+                    // Check if this key should be treated as an array (if the key ends with [])
+                    if (subKey.endsWith('[]')) {
+                        subKey = subKey.slice(0, -2); // Remove '[]' from the key
+                        obj[subKey] = obj[subKey] || []; // Initialize as an array if not already
+                        if (Array.isArray(obj[subKey]) && obj[subKey].length === 0) {
+                            obj[subKey].push({}); // Initialize an empty object in the array if it's the first time
+                        }
+                        obj = obj[subKey][0]; // Move reference to the first object in the array
+                    } else {
+                        obj[subKey] = obj[subKey] || {}; // Initialize as an object if not already
+                        obj = obj[subKey]; // Move reference to the object
+                    }
+                }
+    
+                // Handle the final key (whether it has '[]' or not)
+                var finalKey = keys[keys.length - 1];
+                if (finalKey.endsWith('[]')) {
+                    finalKey = finalKey.slice(0, -2); // Remove '[]'
+                    obj[finalKey] = obj[finalKey] || []; // Initialize the array if not already
+                    obj[finalKey].push(properties[key]); // Push the value to the array
+                } else {
+                    obj[finalKey] = properties[key]; // Set the final value as an object field
+                }
+            }
+        }
+        return resource;
+    };
+    
 
 
 

@@ -29,12 +29,13 @@ Feature: Create and validate a FHIR Patient resource
     
 Scenario: Create multiple FHIR resources from a table
     * table fhirTable
-    | resourceType | id | name.given | name.family | gender |
+    | resourceType | id | name[].given[] | name[].family | gender |
     | "Patient"    | "p1" | "John"       | "Doe"         | "male"   |
     | "Patient"    | "p2" | "Jane"       |             | "female" |
 
-#    * def fhirResources = createFHIRResourcesFromTable(fhirTable)
+    * def fhirResources = createFHIRResourcesFromTable(fhirTable)
+    * karate.log(fhirResources[1])
 
 #    # Validate the resources
-#    * match fhirResources[0].name[0].given == ['John']
+    * match fhirResources[0].name[0].given == ['John']
 #    * match fhirResources[1].name[0].family == ''
