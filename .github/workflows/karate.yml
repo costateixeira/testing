@@ -16,6 +16,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
     - name: Download Karate Standalone JAR
       run: |
         curl -L -o karate.jar https://github.com/karatelabs/karate/releases/download/v1.5.0/karate-1.5.0.jar
