@@ -30,9 +30,10 @@ jobs:
       run: |
         java -jar karate.jar src/test/features/sample.feature
 
-    # Optional step: Check if reports are generated
-    - name: List files in target
-      run: ls -R target
+    # Copy index.html from the site folder to the publish directory
+    - name: Prepare GitHub Pages
+      run: |
+        cp site/index.html target/karate-reports/
 
     # Upload Karate Reports (assumes reports are generated in target/karate-reports)
     - name: Upload Karate Reports
