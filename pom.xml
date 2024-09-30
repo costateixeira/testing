@@ -1,0 +1,6 @@
+<dependency>
+  <groupId>com.intuit.karate</groupId>
+  <artifactId>karate-apache</artifactId>
+  <version>1.4.1</version>
+  <scope>test</scope>
+</dependency>
