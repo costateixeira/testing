@@ -18,11 +18,11 @@ jobs:
 
     - name: Download Karate Standalone JAR
       run: |
-        curl -L -o karate.jar https://search.maven.org/remotecontent?filepath=com/intuit/karate/karate-core/1.4.1/karate-core-1.4.1.jar
+        curl -L -o karate.jar https://github.com/karatelabs/karate/releases/download/v1.5.0/karate-1.5.0.jar
 
     - name: Run Karate Tests
       run: |
-        java -jar karate.jar src/test/features/sample.feature
+        java -jar karate.jar -t target src/test/features/sample.feature
 
     # Optional step: Check if reports are generated
     - name: List files in target
