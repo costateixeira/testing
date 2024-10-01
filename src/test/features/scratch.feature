@@ -2,19 +2,19 @@ Feature: Create and validate a FHIR Patient resource
 
   Background:
 
-  * def baseUrl = 'http://localhost:8080/fhir'
-  * def validationServerUrl = 'http://localhost:8080/fhir'
+  * def baseUrl = 'https://hapi.fhir.org/baseR4'
+  * def validationServerUrl = 'https://hapi.fhir.org/baseR4'
 
   Scenario: Validate the FHIR resource using the prepared request
     Given url baseUrl
-    And path 'Bundle'
+    And path 'Patient'
     When method get
     Then status 200
 
     * def responseContent = response
 
     # Prepare the validation request using the utility function
-    * def validationResponse = responseContent.validate('http://hl7.org/fhir/StructureDefinition/Bundle')
+    * def validationResponse = responseContent.entry[0].resource.validate('http://hl7.org/fhir/StructureDefinition/Bundle')
 
     # Log the validation response
     * karate.log('Validation Response:', validationResponse)
@@ -39,3 +39,4 @@ Scenario: Create multiple FHIR resources from a table
 #    # Validate the resources
     * match fhirResources[0].name[0].given == ['John']
 #    * match fhirResources[1].name[0].family == ''
+
