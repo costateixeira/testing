@@ -26,6 +26,36 @@ Feature: Create and validate a FHIR Patient resource
     * assert validationResponse.countIssues().errors == 0
 
 
+    * def responseContent = response
+
+    # Prepare the validation request using the utility function
+    * def validationResponse = responseContent.entry[0].resource.validate('http://hl7.org/fhir/StructureDefinition/Bundle')
+
+
+
+  Scenario: POST a Patient to the server
+    Given url baseUrl
+    And path 'Patient'
+    And request { 
+      "resourceType": "Patient",
+      "id": "example",
+      "name": [
+        {
+          "use": "official",
+          "family": "Doe",
+          "given": [
+            "John",
+            "A"
+          ]
+        }
+      ],
+      "gender": "male",
+      "birthDate": "1980-01-01"
+    }
+    When method post
+    Then status 201
+
+
     
 Scenario: Create multiple FHIR resources from a table
     * table fhirTable
