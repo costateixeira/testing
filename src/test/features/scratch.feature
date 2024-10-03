@@ -36,22 +36,7 @@ Feature: Create and validate a FHIR Patient resource
   Scenario: POST a Patient to the server
     Given url baseUrl
     And path 'Patient'
-    And request { 
-      "resourceType": "Patient",
-      "id": "example",
-      "name": [
-        {
-          "use": "official",
-          "family": "Doe",
-          "given": [
-            "John",
-            "A"
-          ]
-        }
-      ],
-      "gender": "male",
-      "birthDate": "1980-01-01"
-    }
+    And request read('patient.json')
     When method post
     Then status 201
 
