@@ -24,7 +24,6 @@ Feature: FHIR AllergyIntolerance API tests
     And match response.resourceType == 'AllergyIntolerance'
     * def allergyID = response.id
     * assert allergyID != null
-    * if (!allergyID) karate.log('allergyID is empty or null')
     * setvar('allergyID',allergyID)
 
 
