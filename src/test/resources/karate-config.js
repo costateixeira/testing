@@ -1,4 +1,5 @@
 function() {
+    karate.log('Loading karate-config.js'); // Add this line
     var config = {};
 
 
