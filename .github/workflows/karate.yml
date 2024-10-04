@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - main
-      - lwc      
+      - new  
   pull_request:
     branches:
       - main
-      - lwc
+      - new
 
 jobs:
   test:
