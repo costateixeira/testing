@@ -28,6 +28,7 @@ Feature: FHIR AllergyIntolerance API tests
     * setvar('allergyID',allergyID)
 
 
+
   Scenario: Read the created AllergyIntolerance
   * def allergyID = getvar('allergyID')
     Given path 'AllergyIntolerance', allergyID
