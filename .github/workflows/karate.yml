@@ -26,6 +26,12 @@ jobs:
       run: |
         curl -L -o karate.jar https://github.com/karatelabs/karate/releases/download/v1.5.0/karate-1.5.0.jar
 
+    # Set permissions for target directory (if needed)
+    - name: Set permissions for target directory
+      run: |
+        chmod -R 777 target  
+
+
     - name: Run Karate Tests
       run: |
         java -jar karate.jar src/test/features/fhir.feature
