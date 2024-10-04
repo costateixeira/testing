@@ -231,6 +231,7 @@ function fn() {
         return globalState[key];  // Return the requested value
     });
 
+    karate.log('====== Finished defining functions ======.');
     // Define custom methods for simplified Gherkin expressions
     karate.set('setvar', function(key, value) {
         karate.get('setGlobalVariable')(key, value);  // Call the existing function
