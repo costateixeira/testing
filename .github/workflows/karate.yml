@@ -30,7 +30,7 @@ jobs:
 
     - name: Run Karate Tests
       run: |
-        java -jar karate.jar -g src/test/resources src/test/features/fhir.feature
+        java -jar karate.jar src/test/features/fhir.feature
 
     # Copy index.html from the site folder to the publish directory
     - name: Prepare GitHub Pages
