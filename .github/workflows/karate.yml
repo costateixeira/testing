@@ -29,6 +29,10 @@ jobs:
     # Set permissions for target directory (if needed)
     - name: Set permissions for target directory
       run: |
+        mkdir target  
+    # Set permissions for target directory (if needed)
+    - name: Set permissions for target directory
+      run: |
         chmod -R 777 target  
 
 
