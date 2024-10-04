@@ -6,6 +6,8 @@ Feature: FHIR AllergyIntolerance API tests
     * header Authorization = 'Bearer ' + bearerToken
     * def pseudoToken = 'your_pseudo_token_here'
     * def allergyIntolerancePayload = read('AllergyIntolerance.json')
+    * configure headers = { Accept: 'application/fhir+json', Content-Type: 'application/fhir+json', Prefer: 'return=representation' }
+
 
   Scenario: Create an AllergyIntolerance
     * def timestamp = new java.text.SimpleDateFormat('yyyy-MM-dd').format(new java.util.Date())
