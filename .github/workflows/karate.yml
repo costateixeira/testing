@@ -3,12 +3,9 @@ name: Karate Tests
 on:
   push:
     branches:
-      - main
-      - new  
   pull_request:
     branches:
-      - main
-      - new
+
 
 jobs:
   test:
