@@ -1,7 +1,7 @@
 Feature: FHIR AllergyIntolerance API tests
 
   Background:
-    * url baseURL = 'https://apps-acpt.vitalink-services.be/vault/api/r4'
+    * url baseURL = 'https://hapi.fhir.org/baseR4'
     * def bearerToken = 'your_bearer_token_here'
     * header Authorization = 'Bearer ' + bearerToken
     * def pseudoToken = 'your_pseudo_token_here'
