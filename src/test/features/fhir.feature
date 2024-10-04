@@ -8,9 +8,11 @@ Feature: FHIR AllergyIntolerance API tests
     * def allergyIntolerancePayload = read('AllergyIntolerance.json')
     * configure headers = { Accept: 'application/fhir+json', Content-Type: 'application/fhir+json', Prefer: 'return=representation' }
 
-
   Scenario: Create an AllergyIntolerance
+    # Generate timestamp in the required format
     * def timestamp = new java.text.SimpleDateFormat('yyyy-MM-dd').format(new java.util.Date())
+
+    # Replace placeholders in JSON file with actual values
     * replace allergyIntolerancePayload.pseudoToken = pseudoToken
     * replace allergyIntolerancePayload.recordedDate = timestamp
 
