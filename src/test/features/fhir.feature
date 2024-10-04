@@ -22,6 +22,12 @@ Feature: FHIR AllergyIntolerance API tests
     Then status 201
     And match response.resourceType == 'AllergyIntolerance'
     * def allergyID = 45065534
+    * def allergyID = response.id 
+ 
+    # Add logging to verify that allergyID is set
+    * print 'AllergyIntolerance ID:', allergyID
+    * assert allergyID != null
+
 
   Scenario: Read the created AllergyIntolerance
     Given path 'AllergyIntolerance', allergyID
