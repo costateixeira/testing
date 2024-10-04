@@ -21,7 +21,7 @@ Feature: FHIR AllergyIntolerance API tests
     When method post
     Then status 201
     And match response.resourceType == 'AllergyIntolerance'
-    * def allergyID = response.id
+    * def allergyID = 45065534
 
   Scenario: Read the created AllergyIntolerance
     Given path 'AllergyIntolerance', allergyID
