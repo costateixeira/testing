@@ -1,123 +1,124 @@
 {
-  "resourceType": "AllergyIntolerance",
-  "meta": {
-    "profile": ["https://www.ehealth.fgov.be/standards/fhir/allergy/StructureDefinition/be-allergyintolerance"],
-    "security": [{
-      "system": "https://www.apps.vitalink-services.be",
-      "code": "PATIENT_HEALTH_RECORD",
-      "display": "Patient Health Record"
-    }]
-  },
-  "identifier": [{
-    "system": "https://www.ehealth.fgov.be/standards/fhir/allergy/NamingSystem/be-ns-allergy",
-    "value": "964557ca-f425-4d78-ac7b-90e4727552c5"
-  }],
-  "extension": [{
-    "url": "https://www.ehealth.fgov.be/standards/fhir/allergy/StructureDefinition/be-ext-allergy-type",
-    "valueCodeableConcept": {
-      "coding": [{
-        "system": "http://snomed.info/sct",
-        "code": "609328004"
+    "resourceType": "AllergyIntolerance",
+    "meta": {
+      "profile": ["https://www.ehealth.fgov.be/standards/fhir/allergy/StructureDefinition/be-allergyintolerance"],
+      "security": [{
+        "system": "https://www.apps.vitalink-services.be",
+        "code": "PATIENT_HEALTH_RECORD",
+        "display": "Patient Health Record"
       }]
-    }
-  }],
-  "clinicalStatus": {
-    "coding": [{
-      "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
-      "code": "active",
-      "display": "Active"
-    }]
-  },
-  "verificationStatus": {
-    "coding": [{
-      "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
-      "code": "confirmed"
-    }]
-  },
-  "category": ["food"],
-  "code": {
-    "coding": [{
-      "system": "http://snomed.info/sct",
-      "code": "762952008",
-      "display": "Peanut"
+    },
+    "identifier": [{
+      "system": "https://www.ehealth.fgov.be/standards/fhir/allergy/NamingSystem/be-ns-allergy",
+      "value": "964557ca-f425-4d78-ac7b-90e4727552c5"
     }],
-    "text": "No known allergy"
-  },
-  "patient": {
-    "type": "Patient",
-    "identifier": {
-      "system": "https://www.ehealth.fgov.be/standards/fhir/core/NamingSystem/ssin",
-      "value": "234234234234234234234234",
-      "_value": {
-        "extension": [{
-          "extension": [{
-            "url": "marker",
-            "valueBoolean": true
-          }],
-          "url": "https://www.ehealth.fgov.be/standards/fhir/infsec/StructureDefinition/be-ext-pseudonymization"
+    "extension": [{
+      "url": "https://www.ehealth.fgov.be/standards/fhir/allergy/StructureDefinition/be-ext-allergy-type",
+      "valueCodeableConcept": {
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "609328004"
         }]
       }
-    }
-  },
-  "recordedDate": "2022-01-01",
-  "recorder": {
-    "reference": "#pr1"
-  },
-  "contained": [
-    {
-      "resourceType": "Practitioner",
-      "id": "p1",
-      "meta": {
-        "profile": ["https://www.ehealth.fgov.be/standards/fhir/core/StructureDefinition/be-practitioner"]
-      },
-      "identifier": [
-        {
-          "system": "https://www.ehealth.fgov.be/standards/fhir/core/NamingSystem/ssin",
-          "value": "85012700210"
-        },
-        {
-          "system": "https://www.ehealth.fgov.be/standards/fhir/NamingSystem/nihdi",
-          "value": "10187275004"
-        }
-      ],
-      "name": [
-        {
-          "use": "official",
-          "family": "Fernandez",
-          "given": ["Dr."]
-        }
-      ]
+    }],
+    "clinicalStatus": {
+      "coding": [{
+        "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
+        "code": "active",
+        "display": "Active"
+      }]
     },
-    {
-      "resourceType": "PractitionerRole",
-      "id": "pr1",
-      "meta": {
-        "profile": ["https://www.ehealth.fgov.be/standards/fhir/core/StructureDefinition/be-practitionerrole"]
-      },
-      "practitioner": {
-        "reference": "#p1"
-      },
-      "code": [
-        {
-          "coding": [
-            {
-              "system": "https://www.vitalink.be/fhir/CodeSystem/vitalink-practitioner-token-type-cs",
-              "code": "PHYSICIAN",
-              "display": "PHYSICIAN"
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "reaction": [{
-    "onset": "2024-01-27",
-    "manifestation": [{
+    "verificationStatus": {
+      "coding": [{
+        "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+        "code": "confirmed"
+      }]
+    },
+    "category": ["food"],
+    "code": {
       "coding": [{
         "system": "http://snomed.info/sct",
-        "code": "195967001",
-        "display": "Asthma"
+        "code": "762952008",
+        "display": "Peanut"
+      }],
+      "text": "No known allergy"
+    },
+    "patient": {
+      "type": "Patient",
+      "identifier": {
+        "system": "https://www.ehealth.fgov.be/standards/fhir/core/NamingSystem/ssin",
+        "value": "234234234234234234234234",
+        "_value": {
+          "extension": [{
+            "extension": [{
+              "url": "marker",
+              "valueBoolean": true
+            }],
+            "url": "https://www.ehealth.fgov.be/standards/fhir/infsec/StructureDefinition/be-ext-pseudonymization"
+          }]
+        }
+      }
+    },
+    "recordedDate": "2022-01-01",
+    "recorder": {
+      "reference": "#pr1"
+    },
+    "contained": [
+      {
+        "resourceType": "Practitioner",
+        "id": "p1",
+        "meta": {
+          "profile": ["https://www.ehealth.fgov.be/standards/fhir/core/StructureDefinition/be-practitioner"]
+        },
+        "identifier": [
+          {
+            "system": "https://www.ehealth.fgov.be/standards/fhir/core/NamingSystem/ssin",
+            "value": "85012700210"
+          },
+          {
+            "system": "https://www.ehealth.fgov.be/standards/fhir/NamingSystem/nihdi",
+            "value": "10187275004"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Fernandez",
+            "given": ["Dr."]
+          }
+        ]
+      },
+      {
+        "resourceType": "PractitionerRole",
+        "id": "pr1",
+        "meta": {
+          "profile": ["https://www.ehealth.fgov.be/standards/fhir/core/StructureDefinition/be-practitionerrole"]
+        },
+        "practitioner": {
+          "reference": "#p1"
+        },
+        "code": [
+          {
+            "coding": [
+              {
+                "system": "https://www.vitalink.be/fhir/CodeSystem/vitalink-practitioner-token-type-cs",
+                "code": "PHYSICIAN",
+                "display": "PHYSICIAN"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "reaction": [{
+      "onset": "2024-01-27",
+      "manifestation": [{
+        "coding": [{
+          "system": "http://snomed.info/sct",
+          "code": "195967001",
+          "display": "Asthma"
+        }]
       }]
     }]
-  }]
-}
+  }
+  

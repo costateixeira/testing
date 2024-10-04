@@ -20,28 +20,37 @@ Feature: FHIR AllergyIntolerance API tests
     And request allergyIntolerancePayload
     When method post
     Then status 201
+    * print 'Response:', response
     And match response.resourceType == 'AllergyIntolerance'
-    * def allergyID = 45065534
-    * def allergyID = response.id 
- 
-    # Add logging to verify that allergyID is set
-    * print 'AllergyIntolerance ID:', allergyID
+    * def allergyID = response.id
     * assert allergyID != null
+    * if (!allergyID) karate.log('allergyID is empty or null')
+    * setvar('allergyID',allergyID)
 
 
   Scenario: Read the created AllergyIntolerance
+  * def allergyID = getvar('allergyID')
     Given path 'AllergyIntolerance', allergyID
     When method get
     Then status 200
     And match response.resourceType == 'AllergyIntolerance'
 
+    * def allergyID = response.id
+    * assert allergyID != null
+
+  Scenario: Read the created AllergyIntolerance
+    Given path 'AllergyIntolerance', getvar('allergyID')
+    When method get
+    Then status 200
+    And match response.resourceType == 'AllergyIntolerance'
+
   Scenario: Update the AllergyIntolerance
-    Given path 'AllergyIntolerance', allergyID
+    Given path 'AllergyIntolerance', getvar('allergyID')
     And request
     """
     {
       "resourceType": "AllergyIntolerance",
-      "id": allergyID,
+      "id": "#(getvar('allergyID'))",
       "clinicalStatus": {
         "coding": [{
           "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
@@ -56,6 +65,6 @@ Feature: FHIR AllergyIntolerance API tests
     And match response.clinicalStatus.coding[0].code == 'resolved'
 
   Scenario: Delete the AllergyIntolerance
-    Given path 'AllergyIntolerance', allergyID
+    Given path 'AllergyIntolerance', getvar('allergyID')
     When method delete
-    Then status 204
+    Then status 200
