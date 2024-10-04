@@ -1,4 +1,4 @@
-function fn() {
+function() {
     var config = {};
 
 
