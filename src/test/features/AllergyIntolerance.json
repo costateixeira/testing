@@ -47,7 +47,7 @@
     "type": "Patient",
     "identifier": {
       "system": "https://www.ehealth.fgov.be/standards/fhir/core/NamingSystem/ssin",
-      "value": "{{pseudoToken}}",
+      "value": "234234234234234234234234",
       "_value": {
         "extension": [{
           "extension": [{
@@ -59,7 +59,7 @@
       }
     }
   },
-  "recordedDate": "{{timestamp}}",
+  "recordedDate": "2022-01-01",
   "recorder": {
     "reference": "#pr1"
   },
